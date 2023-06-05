@@ -38,17 +38,39 @@ router.get('/byname',(req,res)=>{
     })
 });
 
+// router.put('/put/:id', (req, res) => {
+//     Student.findOneAndUpdate(
+//       { _id: req.params.id },
+//       {
+//         $set: {
+//           name: req.body.name,
+//           age: req.body.age,
+//           gender: req.body.gender
+//         }
+//       },
+//       { new: true } // to get updated result
+//     )
+//       .then(result => {
+//         res.status(200).send(result);
+//       })
+//       .catch(err => {
+//         res.status(400).send(err);
+//       });
+// });
+
+
+
+
+
 router.put('/put/:id', (req, res) => {
-    Student.findOneAndUpdate(
+    Student.findByIdAndUpdate(
       { _id: req.params.id },
-      {
-        $set: {
+       {
           name: req.body.name,
           age: req.body.age,
           gender: req.body.gender
-        }
-      },
-      { new: true } // to get updated result
+        },
+        { new: true } // to get updated result
     )
       .then(result => {
         res.status(200).send(result);
@@ -56,8 +78,6 @@ router.put('/put/:id', (req, res) => {
       .catch(err => {
         res.status(400).send(err);
       });
-  });
-  
-
+});
 
 module.exports = router;
